@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated $MPW_NAME_FIRST_UPPER$ -->
+      <package
+            uri="http://www.mpw.uni-stuttgart.de/$MPW_NAME$"
+            class="$MPW_NAME$.$MPW_NAME_FIRST_UPPER$Package"
+            genModel="model/$MPW_NAME_FIRST_UPPER$.genmodel"/>
+   </extension>
+
+</plugin>

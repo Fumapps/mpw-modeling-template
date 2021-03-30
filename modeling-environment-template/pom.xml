@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>de.unistuttgart.iste.sqa.mpw.modeling</groupId>
+        <artifactId>de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>./releng/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.parent</relativePath>
+    </parent>
+    
+    <artifactId>$MPW_NAME$simulator-modeling-root</artifactId>
+	<packaging>pom</packaging>
+    
+    <name>$MPW_NAME_FIRST_UPPER$simulator Modeling Root Project</name>
+    
+    <modules>
+        <module>bundles/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator</module>
+        <module>releng/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.parent</module>
+        <module>releng/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.targetplatform</module>
+    </modules>
+    
+</project>

@@ -1,0 +1,8 @@
+context $STAGE_NAME_FIRST_UPPER$
+
+/** For a given location, tests whether the location is inside the bound of the $STAGE_NAME$. */
+query isLocationIn$STAGE_NAME_FIRST_UPPER$(location: Location):
+    location.column >= 0 and 
+    location.column < self.stageSize.columnCount and 
+    location.row >= 0 and 
+    location.row < self.stageSize.rowCount;

@@ -1,0 +1,16 @@
+# Maven
+target
+workspace
+
+# Eclipse
+bin/
+.settings
+.metadata
+
+# IntelliJ
+*.iml
+.idea
+
+# Generation
+src-gen
+debugout

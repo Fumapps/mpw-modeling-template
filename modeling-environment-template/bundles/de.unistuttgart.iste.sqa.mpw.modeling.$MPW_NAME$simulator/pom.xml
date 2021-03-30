@@ -1,0 +1,190 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>de.unistuttgart.iste.sqa.mpw.modeling</groupId>
+        <artifactId>de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../releng/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator.parent</relativePath>
+    </parent>
+    
+    <artifactId>de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator</artifactId>
+    <packaging>eclipse-plugin</packaging>
+    
+    <name>$MPW_NAME_FIRST_UPPER$simulator Modeling</name>
+    
+    
+    <build>
+        <plugins>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generate $MPW_NAME$.genmodel</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+		                <configuration>
+		                    <mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+		                    <arguments>
+		                        <argument>/${project.basedir}/src-workflow/workflow/$MPW_NAME$simulator_genmodel.mwe2</argument>
+                                <argument>-p</argument>
+                                <argument>rootPath=/${project.basedir}/../..</argument>
+		                    </arguments>
+		                    <classpathScope>compile</classpathScope>
+		                    <includePluginDependencies>true</includePluginDependencies>
+		                    <cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
+		                </configuration>
+                    </execution>
+                    <execution>
+                        <id>run mwe2 modeling workflow</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+		                <configuration>
+		                    <mainClass>components.mwe.Mwe2LauncherExtended</mainClass>
+		                    <arguments>
+		                        <argument>/${project.basedir}/src-workflow/workflow/$MPW_NAME$simulator_workflow.mwe2</argument>
+		                        <argument>-p</argument>
+		                        <argument>rootPath=/${project.basedir}/../..</argument>
+		                        <argument>-p</argument>
+		                        <argument>includeJarsWithName=.*de.unistuttgart.*</argument>
+		                        <argument>-p</argument>
+		                        <argument>additionalArchivesPaths=${runtime.classpath}</argument>
+		                    </arguments>
+		                    <classpathScope>compile</classpathScope>
+		                    <includePluginDependencies>true</includePluginDependencies>
+		                    <cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
+		                </configuration>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.emf</groupId>
+                        <artifactId>org.eclipse.emf.mwe2.launch</artifactId>
+                        <version>${emf.mwe.launch.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>org.eclipse.xtext.common.types</artifactId>
+                        <version>${xtext.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>org.eclipse.xtext.xtext.generator</artifactId>
+                        <version>${xtext.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>org.eclipse.xtext.xbase</artifactId>
+                        <version>${xtext.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.xtext</groupId>
+                        <artifactId>xtext-antlr-generator</artifactId>
+                        <version>[2.1.1, 3)</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>commons-cli</groupId>
+                        <artifactId>commons-cli</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/debugout</directory>
+                            <directory>${basedir}/src-gen</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+ 			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <version>3.1.2</version>
+			    
+	            <executions>
+	                <!-- Write jar runtime-classpath into property 'runtime.classpath' -->
+	                <execution>
+	                    <id>classpath</id>
+	                    <goals>
+	                        <goal>build-classpath</goal>
+	                    </goals>
+	                    <configuration>
+	                        <fileSeparator>/</fileSeparator>
+	                        <pathSeparator>;</pathSeparator>
+	                        <outputProperty>runtime.classpath</outputProperty>
+                            <silent>true</silent>
+	                    </configuration>
+	                </execution>
+	            </executions>
+			</plugin>
+			
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            exec-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [3.0.0,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>java</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.apache.maven.plugins
+                                        </groupId>
+                                        <artifactId>
+                                            maven-dependency-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            3.1.2
+                                        </versionRange>
+                                        <goals>
+                                            <goal>build-classpath</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+</project>

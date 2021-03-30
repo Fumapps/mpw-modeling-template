@@ -1,0 +1,22 @@
+module modeling.$MPW_NAME_FIRST_UPPER$simulatorGenModelGenerator
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+
+var rootPath  = "../.."
+var platformUriPrefix = "platform:/resource"
+
+var moduleName = "de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME$simulator"
+
+Workflow {
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup { 
+		platformUri="${rootPath}"
+		scanClassPath = true
+        registerGeneratedEPackage = "mpw.MpwPackage"
+	}
+	
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = "${platformUriPrefix}/${moduleName}/model/$MPW_NAME_FIRST_UPPER$.genmodel"
+		srcPath = "${platformUriPrefix}/${moduleName}/src-gen"
+	}
+	
+}

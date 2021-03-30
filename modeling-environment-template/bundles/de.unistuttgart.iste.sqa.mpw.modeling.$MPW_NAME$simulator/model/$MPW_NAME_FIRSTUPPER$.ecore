@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="$MPW_NAME$" nsURI="http://www.mpw.uni-stuttgart.de/$MPW_NAME$" nsPrefix="$MPW_NAME$">
+  <eClassifiers xsi:type="ecore:EClass" name="$MPW_NAME_FIRST_UPPER$" eSuperTypes="http://www.mpw.uni-stuttgart.de/mpw#//Actor"/>
+  <eClassifiers xsi:type="ecore:EClass" name="$STAGE_NAME_FIRST_UPPER$" eSuperTypes="http://www.mpw.uni-stuttgart.de/mpw#//Stage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="$MPW_NAME$" lowerBound="1" eType="#//$MPW_NAME_FIRST_UPPER$"
+        changeable="false" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="$MPW_NAME_FIRST_UPPER$Game" eSuperTypes="http://www.mpw.uni-stuttgart.de/mpw#//MiniProgramming$STAGE_NAME_FIRST_UPPER$">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="$STAGE_NAME_FIRST_UPPER$" lowerBound="1" eType="#//$STAGE_NAME_FIRST_UPPER$"
+        changeable="false" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

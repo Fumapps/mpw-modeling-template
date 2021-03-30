@@ -1,0 +1,5 @@
+context $STAGE_NAME_FIRST_UPPER$
+
+/** For a given location, return the internal tile object. */
+internal query getTileAt(location: Location): 
+    self.tiles->at(location.row * self.stageSize.columnCount + location.column);

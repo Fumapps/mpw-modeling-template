@@ -1,0 +1,8 @@
+/.idea
+/cmake-build-debug
+*.iml
+
+/core/src/**/generated/
+
+/.vs
+/out

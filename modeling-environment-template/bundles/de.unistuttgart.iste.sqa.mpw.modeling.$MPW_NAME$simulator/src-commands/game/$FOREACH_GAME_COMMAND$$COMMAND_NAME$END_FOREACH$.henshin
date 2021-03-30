@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_MFrY0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
+  <imports href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#/"/>
+  <imports href="http://www.mpw.uni-stuttgart.de/mpw#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_hCUK0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
+    <lhs xmi:id="_hCXOICZjEeuiY_E2amZoVQ" name="Lhs"/>
+    <rhs xmi:id="_hCXOISZjEeuiY_E2amZoVQ" name="Rhs"/>
+  </units>
+</henshin:Module>

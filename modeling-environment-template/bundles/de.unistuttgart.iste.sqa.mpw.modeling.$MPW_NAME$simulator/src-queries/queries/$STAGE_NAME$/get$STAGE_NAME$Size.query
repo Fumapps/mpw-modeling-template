@@ -1,0 +1,4 @@
+context $STAGE_NAME_FIRST_UPPER$
+
+/** Return the size of the current $STAGE_NAME$. From the size you can retrieve the number of rows and colums. */
+query get$STAGE_NAME_FIRST_UPPER$Size: self.stageSize;

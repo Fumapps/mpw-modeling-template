@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME_FIRST_UPPER$simulator/src-gen"
+    modelPluginID="de.unistuttgart.iste.sqa.mpw.modeling.$MPW_NAME_FIRST_UPPER$simulator" modelName="$MPW_NAME_FIRST_UPPER$"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../de.unistuttgart.iste.sqa.mpw.modeling.mpw/model/mpw.genmodel#//commands ../../de.unistuttgart.iste.sqa.mpw.modeling.mpw/model/mpw.genmodel#//stereotypes ../../de.unistuttgart.iste.sqa.mpw.modeling.mpw/model/mpw.genmodel#//basetypes ../../de.unistuttgart.iste.sqa.mpw.modeling.mpw/model/mpw.genmodel#//mpw"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>$MPW_NAME_FIRST_UPPER$.ecore</foreignModel>
+  <genPackages prefix="$MPW_NAME_FIRST_UPPER$" disposableProviderFactory="true" ecorePackage="$MPW_NAME_FIRST_UPPER$.ecore#/">
+    <genClasses ecoreClass="$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$MPW_NAME_FIRST_UPPER$"/>
+    </genClasses>
+    <genClasses ecoreClass="$MPW_NAME_FIRST_UPPER$.ecore#//$MPW_NAME_FIRST_UPPER$Game">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$MPW_NAME_FIRST_UPPER$Game/$STAGE_NAME_FIRST_UPPER$"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

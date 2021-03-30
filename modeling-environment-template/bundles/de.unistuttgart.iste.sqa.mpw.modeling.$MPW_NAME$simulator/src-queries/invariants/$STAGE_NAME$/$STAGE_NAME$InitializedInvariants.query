@@ -1,0 +1,4 @@
+context $STAGE_NAME_FIRST_UPPER$
+
+/** the $STAGE_NAME$ tiles must not be empty */
+invariant isInitialized: self.tiles->notEmpty();
