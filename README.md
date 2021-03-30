@@ -7,6 +7,7 @@ This project can be used to setup a modeling environment for a new MPW (Mini Pro
 Execute the application and enter the information:
 
 * MPW Name
+* MPW Stage Name
 * optional: list of queries
 * optional: list of constraints
 * optional: list of commands
