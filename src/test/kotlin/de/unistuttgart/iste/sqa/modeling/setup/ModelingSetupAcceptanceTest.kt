@@ -2,12 +2,14 @@ package de.unistuttgart.iste.sqa.modeling.setup
 
 import de.unistuttgart.iste.sqa.modeling.setup.filesystem.FileSystemImpl
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.util.concurrent.TimeUnit
 
 internal class ModelingSetupAcceptanceTest {
     @Test
+    @Disabled
     fun `GIVEN a simple configuration WHEN execute setup AND call maven package afterwards THEN build succeeds`() {
         val fileSystem = FileSystemImpl()
         val configuration = SetupConfiguration(
