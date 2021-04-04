@@ -23,6 +23,11 @@ class FileSystemFake : IFileSystem {
         fileMap[path] = content.toByteArray(charset)
     }
 
+    /* fake implementation simply adds the prefix "ENCODED"  */
+    override fun writeFileForBase64Data(path: String, contentInBase64: String) {
+        fileMap[path] = "ENCODED: $contentInBase64".toByteArray(charset)
+    }
+
     override fun deleteFile(path: String) {
         fileMap.remove(path)
     }

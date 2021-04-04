@@ -8,5 +8,6 @@ interface IFileSystem {
     fun walkFiles(path: String, function: (String) -> Unit)
     fun readFile(path: String): String
     fun writeFile(path: String, content: String)
+    fun writeFileForBase64Data(path: String, contentInBase64: String)
     fun deleteFile(path: String)
 }

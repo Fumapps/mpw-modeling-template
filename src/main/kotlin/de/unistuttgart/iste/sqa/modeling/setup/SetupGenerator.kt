@@ -13,6 +13,8 @@ class SetupGenerator(
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
 
+    private val IMAGES_FILE = "\$IMAGES\$"
+
     private lateinit var configuration: SetupConfiguration
 
     fun generate(configuration: SetupConfiguration) {
@@ -24,13 +26,22 @@ class SetupGenerator(
             fileSystem.writeFile(filePath, replacedContent)
         }
         fileSystem.walkFiles(configuration.targetPath) { filePath ->
+            if (filePath.toFileName() == IMAGES_FILE) {
+                fileSystem.deleteFile(filePath)
+                val parentFilePath = filePath.toParentFilePath()
+                for (image in configuration.images) {
+                    fileSystem.writeFileForBase64Data(parentFilePath.toSubFilePath("${image.name}.png"), image.dataEncodedInBase64)
+                }
+            }
+        }
+        fileSystem.walkFiles(configuration.targetPath) { filePath ->
             val content = fileSystem.readFile(filePath)
-            val fileName = File(filePath).name
+            val fileName = filePath.toFileName()
             val replacedFileName = fileName.replacePlaceholders()
             val containedAnyPlaceholder = fileName != replacedFileName
             if (containedAnyPlaceholder) {
                 fileSystem.deleteFile(filePath)
-                fileSystem.writeFile(File(filePath).parent + "/$replacedFileName", content)
+                fileSystem.writeFile(filePath.toParentFilePath().toSubFilePath(replacedFileName), content)
             }
         }
     }
@@ -45,4 +56,8 @@ class SetupGenerator(
 
     private fun String.toFirstUpper() =
         if (isNotEmpty()) this[0].toUpperCase() + substring(1) else this
+
+    private fun String.toFileName() = File(this).name
+    private fun String.toParentFilePath() = File(this).parent
+    private fun String.toSubFilePath(subPath: String) = "$this/$subPath"
 }

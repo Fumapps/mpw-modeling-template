@@ -104,6 +104,20 @@ internal class SetupGeneratorTest {
 
     //endregion
 
+    //region Feature: dynamic replacements - Images
+
+    @Test // Scenario: generate image files for placeholders
+    fun `GIVEN two images WHEN generate file name THEN file image placeholders are replaced`() {
+        withImages("apple: =ENCODED_APPLE_IMAGE=", "tree: =ENCODED_TREE_IMAGE=")
+        andWithFakeFile("/root/\$IMAGES\$", "")
+        generate()
+        assertFileNotExists("/root/\$IMAGES\$")
+        assertFile("/root/apple.png", "ENCODED: =ENCODED_APPLE_IMAGE=")
+        assertFile("/root/tree.png", "ENCODED: =ENCODED_TREE_IMAGE=")
+    }
+
+    //endregion
+
     @BeforeEach
     private fun setup() {
         configuration = SetupConfiguration(dummyFilePath, "", "", "")
@@ -121,6 +135,13 @@ internal class SetupGeneratorTest {
 
     private fun withStageName(name: String) {
         configuration.stageName = name
+    }
+
+    private fun withImages(vararg images: String) {
+        configuration.images += images
+            .map { it.split(": ") }
+            .map { Image(it[0], it[1]) }
+            .toMutableList()
     }
 
     private fun andWithFakeFile(path: String, content: String) {
