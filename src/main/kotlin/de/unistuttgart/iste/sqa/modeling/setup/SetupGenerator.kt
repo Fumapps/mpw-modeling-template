@@ -7,6 +7,11 @@ class SetupGenerator(
     private val fileSystem: IFileSystem
 ) {
     private val MPW_NAME = "\$MPW_NAME\$"
+    private val ACTOR_NAME = "\$ACTOR_NAME\$"
+    private val STAGE_NAME = "\$STAGE_NAME\$"
+    private val MPW_NAME_FIRST_UPPER = "\$MPW_NAME_FIRST_UPPER\$"
+    private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
+    private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
 
     private lateinit var configuration: SetupConfiguration
 
@@ -20,14 +25,24 @@ class SetupGenerator(
         }
         fileSystem.walkFiles(configuration.targetPath) { filePath ->
             val content = fileSystem.readFile(filePath)
-            if (File(filePath).name.contains(MPW_NAME)) {
+            val fileName = File(filePath).name
+            val replacedFileName = fileName.replacePlaceholders()
+            val containedAnyPlaceholder = fileName != replacedFileName
+            if (containedAnyPlaceholder) {
                 fileSystem.deleteFile(filePath)
+                fileSystem.writeFile(File(filePath).parent + "/$replacedFileName", content)
             }
-            val replacedFilePath = filePath.replacePlaceholders()
-            fileSystem.writeFile(replacedFilePath, content)
         }
     }
 
     private fun String.replacePlaceholders() = this
         .replace(MPW_NAME, configuration.mpwName.toLowerCase())
+        .replace(ACTOR_NAME, configuration.actorName.toLowerCase())
+        .replace(STAGE_NAME, configuration.stageName.toLowerCase())
+        .replace(MPW_NAME_FIRST_UPPER, configuration.mpwName.toFirstUpper())
+        .replace(ACTOR_NAME_FIRST_UPPER, configuration.actorName.toFirstUpper())
+        .replace(STAGE_NAME_FIRST_UPPER, configuration.stageName.toFirstUpper())
+
+    private fun String.toFirstUpper() =
+        if (isNotEmpty()) this[0].toUpperCase() + substring(1) else this
 }

@@ -14,8 +14,9 @@ internal class ModelingSetupAcceptanceTest {
         val fileSystem = FileSystemImpl()
         val configuration = SetupConfiguration(
             createTempFile(),
-            "hamster",
-            "Paule",
+            "hamstersimulator",
+            "Hamster",
+            "Territory",
             gameCommands("move", "turnLeft"),
             editorCommands("addWallToTile", "addGrainToTile"),
             queries("frontIsClear", "grainAvailable")

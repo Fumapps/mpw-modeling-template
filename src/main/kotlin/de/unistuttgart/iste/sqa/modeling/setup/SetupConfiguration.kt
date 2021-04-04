@@ -9,6 +9,7 @@ data class SetupConfiguration(
     var targetPath: String,
     var mpwName: String,
     var actorName: String,
+    var stageName: String,
     val gameCommands: MutableList<String> = mutableListOf(),
     val editorCommands: MutableList<String> = mutableListOf(),
     val actorQueries: MutableList<String> = mutableListOf(),

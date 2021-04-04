@@ -1,4 +1,4 @@
-name: CI with Gralde
+name: CI with Gradle
 
 on:
   push:
