@@ -118,6 +118,38 @@ internal class SetupGeneratorTest {
 
     //endregion
 
+    //region Feature: looped file replacements
+
+    @Test // Scenario: generate game command files for placeholders
+    fun `GIVEN two game commands WHEN generate for file name placeholder THEN two game command files are replaced`() {
+        withGameCommands("foo", "bar")
+        andWithFakeFile("/root/\$FOREACH_GAME_COMMAND\$\$COMMAND_NAME\$\$END_FOREACH\$.henshin", "<content>")
+        generate()
+        assertFileNotExists("/root/\$FOREACH_GAME_COMMAND\$\$COMMAND_NAME\$\$END_FOREACH\$.henshin")
+        assertFile("/root/foo.henshin", "<content>")
+        assertFile("/root/bar.henshin", "<content>")
+    }
+
+    @Test // Scenario: generate game command files for placeholders also in file content
+    fun `GIVEN two game commands WHEN generate for content command name placeholder THEN game command name in files is replaced`() {
+        withGameCommands("foo", "bar")
+        andWithFakeFile("/root/\$FOREACH_GAME_COMMAND\$\$COMMAND_NAME\$\$END_FOREACH\$.henshin", "\$COMMAND_NAME\$")
+        generate()
+        assertFile("/root/foo.henshin", "foo")
+        assertFile("/root/bar.henshin", "bar")
+    }
+
+    @Test // Scenario: generate game command files also with other placeholders
+    fun `GIVEN game command WHEN generate for command name placeholder AND for mpw name THEN both placeholders are replaced`() {
+        withGameCommands("foo")
+        withMpwName("hamster")
+        andWithFakeFile("/root/\$FOREACH_GAME_COMMAND\$\$COMMAND_NAME\$_\$MPW_NAME\$\$END_FOREACH\$.henshin", "\$COMMAND_NAME\$: \$MPW_NAME\$")
+        generate()
+        assertFile("/root/foo_hamster.henshin", "foo: hamster")
+    }
+
+    //endregion
+
     @BeforeEach
     private fun setup() {
         configuration = SetupConfiguration(dummyFilePath, "", "", "")
@@ -142,6 +174,14 @@ internal class SetupGeneratorTest {
             .map { it.split(": ") }
             .map { Image(it[0], it[1]) }
             .toMutableList()
+    }
+
+    private fun withGameCommands(vararg commandNames: String) {
+        configuration.gameCommands += commandNames
+    }
+
+    private fun withEditorCommands(vararg commandNames: String) {
+        configuration.editorCommands += commandNames
     }
 
     private fun andWithFakeFile(path: String, content: String) {
