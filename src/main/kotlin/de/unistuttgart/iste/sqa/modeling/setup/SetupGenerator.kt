@@ -13,7 +13,12 @@ class SetupGenerator(
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
 
-    private val FOREACH_GAME_COMMAND = "\$FOREACH_GAME_COMMAND\$"
+    private val GAME_COMMAND_LITERAL = "GAME_COMMAND"
+    private val EDITOR_COMMAND_LITERAL = "EDITOR_COMMAND"
+
+    private val FOREACH_X_COMMAND = "\$FOREACH_XXX\$"
+    private val FOREACH_GAME_COMMAND = FOREACH_X_COMMAND.replace("XXX", GAME_COMMAND_LITERAL)
+    private val FOREACH_EDITOR_COMMAND = FOREACH_X_COMMAND.replace("XXX", EDITOR_COMMAND_LITERAL)
     private val FOREACH_END = "\$END_FOREACH\$"
     private val FOREACH_VAR_COMMAND_NAME = "\$COMMAND_NAME\$"
 
@@ -33,6 +38,9 @@ class SetupGenerator(
             }
             if (filePath.toFileName().contains(FOREACH_GAME_COMMAND)) {
                 replaceGameCommandLoopFileNamePlaceholder(filePath, configuration)
+            }
+            if (filePath.toFileName().contains(FOREACH_EDITOR_COMMAND)) {
+                replaceEditorCommandLoopFileNamePlaceholder(filePath, configuration)
             }
         }
         fileSystem.walkFiles(configuration.targetPath) { filePath ->
@@ -72,21 +80,32 @@ class SetupGenerator(
     }
 
     private fun replaceGameCommandLoopFileNamePlaceholder(
+        filePath: String, configuration: SetupConfiguration
+    ) = internalReplaceCommandLoopFileNamePlaceholder(filePath, configuration.gameCommands, GAME_COMMAND_LITERAL)
+
+    private fun replaceEditorCommandLoopFileNamePlaceholder(
+        filePath: String, configuration: SetupConfiguration
+    ) = internalReplaceCommandLoopFileNamePlaceholder(filePath, configuration.editorCommands, EDITOR_COMMAND_LITERAL)
+
+    private fun internalReplaceCommandLoopFileNamePlaceholder(
         filePath: String,
-        configuration: SetupConfiguration
+        commands: MutableList<String>,
+        commandPlaceholder: String
     ) {
+        val foreachPatternString = FOREACH_X_COMMAND.replace("XXX", commandPlaceholder)
+
         val original = filePath.toFileName()
         val content = fileSystem.readFile(filePath)
         val parentFilePath = filePath.toParentFilePath()
 
-        val begin = original.indexOf(FOREACH_GAME_COMMAND)
+        val begin = original.indexOf(foreachPatternString)
         val end = original.indexOf(FOREACH_END)
         assert(end > begin)
 
         val prefix = original.substring(0, begin)
-        val loopPart = original.substring(begin + FOREACH_GAME_COMMAND.length, end)
+        val loopPart = original.substring(begin + foreachPatternString.length, end)
         val suffix = original.substring(end + FOREACH_END.length)
-        configuration.gameCommands.forEach { commandName ->
+        commands.forEach { commandName ->
             val replacedLoopPart = loopPart.replacePlaceholdersWithCommandName(commandName)
             val newFileName = prefix + replacedLoopPart + suffix
             val replacedContent = content.replacePlaceholdersWithCommandName(commandName)

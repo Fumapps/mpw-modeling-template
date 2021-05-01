@@ -148,6 +148,16 @@ internal class SetupGeneratorTest {
         assertFile("/root/foo_hamster.henshin", "foo: hamster")
     }
 
+    @Test // Scenario: generate editor command files for placeholders
+    fun `GIVEN two editor commands WHEN generate for file name placeholder THEN two editor command files are replaced`() {
+        withEditorCommands("foo", "bar")
+        andWithFakeFile("/root/\$FOREACH_EDITOR_COMMAND\$\$COMMAND_NAME\$\$END_FOREACH\$.henshin", "<content>")
+        generate()
+        assertFileNotExists("/root/\$FOREACH_EDITOR_COMMAND\$\$COMMAND_NAME\$\$END_FOREACH\$.henshin")
+        assertFile("/root/foo.henshin", "<content>")
+        assertFile("/root/bar.henshin", "<content>")
+    }
+
     //endregion
 
     @BeforeEach
