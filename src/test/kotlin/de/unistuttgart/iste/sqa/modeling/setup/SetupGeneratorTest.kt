@@ -104,6 +104,10 @@ internal class SetupGeneratorTest {
 
     //endregion
 
+    //region Feature: directory name replacement
+    // TODO: test replacement of leaf/intermediary directories
+    //endregion
+
     //region Feature: dynamic replacements - Images
 
     @Test // Scenario: generate image files for placeholders
@@ -158,6 +162,25 @@ internal class SetupGeneratorTest {
         assertFile("/root/bar.henshin", "<content>")
     }
 
+    @Test // Scenario: generate query files for placeholders
+    fun `GIVEN two queries WHEN generate for file name placeholder THEN two query files are replaced`() {
+        withActorQueries("foo", "bar")
+        andWithFakeFile("/root/\$FOREACH_ACTOR_QUERY\$\$QUERY_NAME\$\$END_FOREACH\$.query", "<content>")
+        generate()
+        assertFileNotExists("/root/\$FOREACH_QUERY\$\$QUERY_NAME\$\$END_FOREACH\$.query")
+        assertFile("/root/foo.query", "<content>")
+        assertFile("/root/bar.query", "<content>")
+    }
+
+    @Test // Scenario: generate query files for placeholders also in file content
+    fun `GIVEN two queries WHEN generate for content command name placeholder THEN query name in files is replaced`() {
+        withActorQueries("foo", "bar")
+        andWithFakeFile("/root/\$FOREACH_ACTOR_QUERY\$\$QUERY_NAME\$\$END_FOREACH\$.query", "\$QUERY_NAME\$")
+        generate()
+        assertFile("/root/foo.query", "foo")
+        assertFile("/root/bar.query", "bar")
+    }
+
     //endregion
 
     @BeforeEach
@@ -192,6 +215,10 @@ internal class SetupGeneratorTest {
 
     private fun withEditorCommands(vararg commandNames: String) {
         configuration.editorCommands += commandNames
+    }
+
+    private fun withActorQueries(vararg queryNames: String) {
+        configuration.actorQueries += queryNames
     }
 
     private fun andWithFakeFile(path: String, content: String) {

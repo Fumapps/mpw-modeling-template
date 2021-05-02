@@ -15,12 +15,15 @@ class SetupGenerator(
 
     private val GAME_COMMAND_LITERAL = "GAME_COMMAND"
     private val EDITOR_COMMAND_LITERAL = "EDITOR_COMMAND"
+    private val ACTOR_QUERY_LITERAL = "ACTOR_QUERY"
 
-    private val FOREACH_X_COMMAND = "\$FOREACH_XXX\$"
-    private val FOREACH_GAME_COMMAND = FOREACH_X_COMMAND.replace("XXX", GAME_COMMAND_LITERAL)
-    private val FOREACH_EDITOR_COMMAND = FOREACH_X_COMMAND.replace("XXX", EDITOR_COMMAND_LITERAL)
+    private val FOREACH_X = "\$FOREACH_XXX\$"
+    private val FOREACH_GAME_COMMAND = FOREACH_X.replace("XXX", GAME_COMMAND_LITERAL)
+    private val FOREACH_EDITOR_COMMAND = FOREACH_X.replace("XXX", EDITOR_COMMAND_LITERAL)
+    private val FOREACH_ACTOR_QUERY = FOREACH_X.replace("XXX", ACTOR_QUERY_LITERAL)
     private val FOREACH_END = "\$END_FOREACH\$"
     private val FOREACH_VAR_COMMAND_NAME = "\$COMMAND_NAME\$"
+    private val FOREACH_VAR_QUERY_NAME = "\$QUERY_NAME\$"
 
     private val IMAGES_FILE = "\$IMAGES\$"
 
@@ -41,6 +44,9 @@ class SetupGenerator(
             }
             if (filePath.toFileName().contains(FOREACH_EDITOR_COMMAND)) {
                 replaceEditorCommandLoopFileNamePlaceholder(filePath, configuration)
+            }
+            if (filePath.toFileName().contains(FOREACH_ACTOR_QUERY)) {
+                replaceActorQueryLoopFileNamePlaceholder(filePath, configuration)
             }
         }
         fileSystem.walkFiles(configuration.targetPath) { filePath ->
@@ -87,12 +93,16 @@ class SetupGenerator(
         filePath: String, configuration: SetupConfiguration
     ) = internalReplaceCommandLoopFileNamePlaceholder(filePath, configuration.editorCommands, EDITOR_COMMAND_LITERAL)
 
+    private fun replaceActorQueryLoopFileNamePlaceholder(
+        filePath: String, configuration: SetupConfiguration
+    ) = internalReplaceCommandLoopFileNamePlaceholder(filePath, configuration.actorQueries, ACTOR_QUERY_LITERAL)
+
     private fun internalReplaceCommandLoopFileNamePlaceholder(
         filePath: String,
         commands: MutableList<String>,
-        commandPlaceholder: String
+        literalPlaceholder: String
     ) {
-        val foreachPatternString = FOREACH_X_COMMAND.replace("XXX", commandPlaceholder)
+        val foreachPatternString = FOREACH_X.replace("XXX", literalPlaceholder)
 
         val original = filePath.toFileName()
         val content = fileSystem.readFile(filePath)
@@ -105,18 +115,27 @@ class SetupGenerator(
         val prefix = original.substring(0, begin)
         val loopPart = original.substring(begin + foreachPatternString.length, end)
         val suffix = original.substring(end + FOREACH_END.length)
-        commands.forEach { commandName ->
-            val replacedLoopPart = loopPart.replacePlaceholdersWithCommandName(commandName)
+        commands.forEach { variableName ->
+            val variableNamePlaceholder = literalPlaceholder.toVariableNamePlaceholder()
+            val replacedLoopPart = loopPart.replacePlaceholdersWithVariableName(variableNamePlaceholder, variableName)
             val newFileName = prefix + replacedLoopPart + suffix
-            val replacedContent = content.replacePlaceholdersWithCommandName(commandName)
+            val replacedContent = content.replacePlaceholdersWithVariableName(variableNamePlaceholder, variableName)
             fileSystem.writeFile(parentFilePath.toSubFilePath(newFileName), replacedContent)
         }
         fileSystem.deleteFile(filePath)
     }
 
-    private fun String.replacePlaceholdersWithCommandName(commandName: String) = this
+    /**
+     * @param variableNamePlaceHolder is set to either COMMAND_NAME or QUERY_NAME
+     */
+    private fun String.replacePlaceholdersWithVariableName(variableNamePlaceHolder:String, variableName: String) = this
         .replacePlaceholders()
-        .replace(FOREACH_VAR_COMMAND_NAME, commandName)
+        .replace(variableNamePlaceHolder, variableName)
+
+    /**
+     * @param this has to contain exactly one "_", used for literals "GAME_COMMAND", "EDITOR_COMMAND", "ACTOR_QUERY"
+     */
+    private fun String.toVariableNamePlaceholder() = "$" + substringAfter("_") + "_NAME$"
 
     private fun String.replacePlaceholders() = this
         .replace(MPW_NAME, configuration.mpwName.toLowerCase())
