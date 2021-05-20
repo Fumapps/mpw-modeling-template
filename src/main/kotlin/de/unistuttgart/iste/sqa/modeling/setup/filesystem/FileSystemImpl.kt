@@ -6,7 +6,11 @@ import java.util.*
 
 class FileSystemImpl(override var charset: Charset = Charsets.UTF_8) : IFileSystem {
     override fun walkFiles(path: String, function: (String) -> Unit) {
-        File(path).walk().forEach { function(it.absolutePath) }
+        File(path).walk().forEach {
+            if (it.isFile) {
+                function(it.absolutePath)
+            }
+        }
     }
 
     override fun readFile(path: String): String {

@@ -1,5 +1,6 @@
-package de.unistuttgart.iste.sqa.modeling.setup
+package de.unistuttgart.iste.sqa.modeling.setup.generation
 
+import de.unistuttgart.iste.sqa.modeling.setup.SetupConfiguration
 import de.unistuttgart.iste.sqa.modeling.setup.filesystem.IFileSystem
 import java.io.File
 

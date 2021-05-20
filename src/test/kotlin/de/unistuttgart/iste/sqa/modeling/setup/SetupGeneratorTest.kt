@@ -1,5 +1,6 @@
 package de.unistuttgart.iste.sqa.modeling.setup
 
+import de.unistuttgart.iste.sqa.modeling.setup.generation.SetupGenerator
 import de.unistuttgart.iste.sqa.modeling.setup.testdoubles.FileSystemFake
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
