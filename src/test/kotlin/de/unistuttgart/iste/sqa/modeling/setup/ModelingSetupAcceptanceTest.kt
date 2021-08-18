@@ -24,11 +24,14 @@ internal class ModelingSetupAcceptanceTest {
         val sut = ModelingTemplateProcessor()
         sut.createProjectStructureFromTemplate(configuration)
 
-        val process = ProcessBuilder("mvn", "package", "--file", configuration.targetPath, "-Dmaven.repo.local",
-            "${configuration.targetPath}/maven-local-repository"
-        ).start()
+        val process = ProcessBuilder("mvn", "package", "--file", configuration.targetPath,
+            "-Dmaven.repo.local=${configuration.targetPath}/maven-local-repository"
+        )
+            .directory(File(configuration.targetPath))
+            .inheritIO()
+            .start()
 
-        process.waitFor(5, TimeUnit.MINUTES)
+        process.waitFor(10, TimeUnit.MINUTES)
         assertEquals(0, process.exitValue(), process.inputStream.bufferedReader().readText())
 
         cleanup(configuration)
