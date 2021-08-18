@@ -50,6 +50,9 @@ class SetupGenerator(
                 replaceActorQueryLoopFileNamePlaceholder(filePath, configuration)
             }
         }
+        fileSystem.walkDirectories(configuration.targetPath) { directoryPath ->
+            replaceGeneralDirectoryNamePlaceholders(directoryPath)
+        }
         fileSystem.walkFiles(configuration.targetPath) { filePath ->
             replaceGeneralFileNamePlaceholders(filePath)
         }
@@ -76,13 +79,20 @@ class SetupGenerator(
     }
 
     private fun replaceGeneralFileNamePlaceholders(filePath: String) {
-        val content = fileSystem.readFile(filePath)
         val fileName = filePath.toFileName()
         val replacedFileName = fileName.replacePlaceholders()
         val containedAnyPlaceholder = fileName != replacedFileName
         if (containedAnyPlaceholder) {
-            fileSystem.deleteFile(filePath)
-            fileSystem.writeFile(filePath.toParentFilePath().toSubFilePath(replacedFileName), content)
+            fileSystem.renameFile(filePath.toParentFilePath(), fileName, replacedFileName)
+        }
+    }
+
+    private fun replaceGeneralDirectoryNamePlaceholders(directoryPath: String) {
+        val directoryName = directoryPath.toFileName()
+        val replacedFileName = directoryName.replacePlaceholders()
+        val containedAnyPlaceholder = directoryName != replacedFileName
+        if (containedAnyPlaceholder) {
+            fileSystem.renameDirectory(directoryPath.toParentFilePath(), directoryName, replacedFileName)
         }
     }
 

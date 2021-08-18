@@ -106,7 +106,15 @@ internal class SetupGeneratorTest {
     //endregion
 
     //region Feature: directory name replacement
-    // TODO: test replacement of leaf/intermediary directories
+
+    @Test // Scenario: replace mpw name in directory name
+    fun `GIVEN mpw name WHEN generate intermediate directory name THEN mpw name is inserted in directory name`() {
+        withMpwName("hamster")
+        andWithFakeFile("/root/my_\$MPW_NAME\$_dir/dummy.txt", "")
+        generate()
+        assertFileIsReplacedTo("/root/my_\$MPW_NAME\$_dir/dummy.txt", "/root/my_hamster_dir/dummy.txt")
+    }
+
     //endregion
 
     //region Feature: dynamic replacements - Images
@@ -242,10 +250,10 @@ internal class SetupGeneratorTest {
     }
 
     private fun assertFileExists(path: String) {
-        assertTrue(fileSystemFake.fileMap.containsKey(path))
+        assertTrue(fileSystemFake.fileMap.containsKey(path), "'$path' does not exist")
     }
 
     private fun assertFileNotExists(path: String) {
-        assertFalse(fileSystemFake.fileMap.containsKey(path))
+        assertFalse(fileSystemFake.fileMap.containsKey(path), "'$path' does exist")
     }
 }
