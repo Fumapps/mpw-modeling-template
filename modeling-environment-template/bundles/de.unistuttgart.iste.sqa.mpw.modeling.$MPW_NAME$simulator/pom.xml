@@ -23,7 +23,7 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>generate $MPW_NAME$.genmodel</id>
+                        <id>generate $MPW_NAME_FIRST_UPPER$.genmodel</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>java</goal>

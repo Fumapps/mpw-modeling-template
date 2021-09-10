@@ -6,7 +6,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="$MPW_NAME$" lowerBound="1" eType="#//$MPW_NAME_FIRST_UPPER$"
         changeable="false" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="$MPW_NAME_FIRST_UPPER$Game" eSuperTypes="http://www.mpw.uni-stuttgart.de/mpw#//MiniProgramming$STAGE_NAME_FIRST_UPPER$">
+  <eClassifiers xsi:type="ecore:EClass" name="$MPW_NAME_FIRST_UPPER$Game" eSuperTypes="http://www.mpw.uni-stuttgart.de/mpw#//MiniProgrammingWorld">
     <eStructuralFeatures xsi:type="ecore:EReference" name="$STAGE_NAME_FIRST_UPPER$" lowerBound="1" eType="#//$STAGE_NAME_FIRST_UPPER$"
         changeable="false" containment="true"/>
   </eClassifiers>
