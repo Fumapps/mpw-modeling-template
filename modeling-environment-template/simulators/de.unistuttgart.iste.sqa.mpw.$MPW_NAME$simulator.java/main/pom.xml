@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>main</artifactId>
 
-	<name>Hamster Simulator Main</name>
+	<name>$MPW_NAME_FIRST_UPPER$ Simulator Main</name>
 
 	<parent>
 		<groupId>de.unistuttgart.iste.sqa.mpw.$MPW_NAME$simulator</groupId>

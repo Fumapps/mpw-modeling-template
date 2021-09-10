@@ -11,7 +11,7 @@ internal class ModelingSetupAcceptanceTest {
     fun `GIVEN a simple configuration WHEN execute setup AND call maven package afterwards THEN build succeeds`() {
         val configuration = SetupConfiguration(
             createTempFile(),
-            "hamstersimulator",
+            "hamster",
             "Hamster",
             "Territory",
             gameCommands("move", "turnLeft"),
@@ -38,9 +38,9 @@ internal class ModelingSetupAcceptanceTest {
     }
 
     private fun gameCommands(vararg names: String) = names.toMutableList()
-
     private fun editorCommands(vararg names: String) = names.toMutableList()
     private fun queries(vararg names: String) = names.toMutableList()
+
     private fun createTempFile(): String {
         val prefix = "ModelingSetupAcceptanceTest-${System.currentTimeMillis()}"
         val directory = Files.createTempDirectory(prefix)
