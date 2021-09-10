@@ -14,7 +14,7 @@ class FileSystemImpl(override var charset: Charset = Charsets.UTF_8) : IFileSyst
     }
 
     override fun walkDirectories(path: String, function: (String) -> Unit) {
-        File(path).walk().forEach {
+        File(path).walkBottomUp().forEach {
             if (it.isDirectory) {
                 function(it.absolutePath)
             }
