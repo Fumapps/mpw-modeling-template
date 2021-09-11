@@ -27,7 +27,7 @@ internal class ModelingSetupAcceptanceTest {
 
         assertThatNoPlaceholderIsExistingAnyMore(configuration.targetPath)
 
-        val process = ProcessBuilder("mvn", "package", "--file", configuration.targetPath,
+        val process = ProcessBuilder("mvn", "install", "--file", configuration.targetPath,
             "-Dmaven.repo.local=${configuration.targetPath}/maven-local-repository"
         )
             .directory(File(configuration.targetPath))
