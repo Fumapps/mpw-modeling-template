@@ -5,7 +5,18 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kg6_sSZjEeuiY_E2amZoVQ" key="value" value="preserve"/>
     </eAnnotations>
     <children xmi:type="notation:DecorationNode" xmi:id="_hCWAAiZjEeuiY_E2amZoVQ" type="5001"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_hCWAAyZjEeuiY_E2amZoVQ" type="7001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hCWAAyZjEeuiY_E2amZoVQ" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_Z__xgBLaEeyRtoBjqFMidw" type="3001" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_aAAYkBLaEeyRtoBjqFMidw" type="5002"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_aAAYkRLaEeyRtoBjqFMidw" type="5003"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_aAAYkhLaEeyRtoBjqFMidw" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_aAAYkxLaEeyRtoBjqFMidw"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_aAAYlBLaEeyRtoBjqFMidw"/>
+        </children>
+        <element xmi:type="henshin:Node" href="$COMMAND_NAME$.henshin#_Z_xvEBLaEeyRtoBjqFMidw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z__xgRLaEeyRtoBjqFMidw" x="30" y="16"/>
+      </children>
+    </children>
     <element xmi:type="henshin:Rule" href="$COMMAND_NAME$.henshin#_hCUK0CZjEeuiY_E2amZoVQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hCWAASZjEeuiY_E2amZoVQ" x="173" y="107"/>
   </children>

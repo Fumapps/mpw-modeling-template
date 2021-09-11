@@ -3,7 +3,16 @@
   <imports href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#/"/>
   <imports href="http://www.mpw.uni-stuttgart.de/mpw#/"/>
   <units xsi:type="henshin:Rule" xmi:id="_hCUK0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
-    <lhs xmi:id="_hCXOICZjEeuiY_E2amZoVQ" name="Lhs"/>
-    <rhs xmi:id="_hCXOISZjEeuiY_E2amZoVQ" name="Rhs"/>
+    <lhs xmi:id="_hCXOICZjEeuiY_E2amZoVQ" name="Lhs">
+      <nodes xmi:id="_Z_xvEBLaEeyRtoBjqFMidw" name="self">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_hCXOISZjEeuiY_E2amZoVQ" name="Rhs">
+      <nodes xmi:id="_Z_yWIBLaEeyRtoBjqFMidw" name="self">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_Z_yWIRLaEeyRtoBjqFMidw" origin="_Z_xvEBLaEeyRtoBjqFMidw" image="_Z_yWIBLaEeyRtoBjqFMidw"/>
   </units>
 </henshin:Module>
