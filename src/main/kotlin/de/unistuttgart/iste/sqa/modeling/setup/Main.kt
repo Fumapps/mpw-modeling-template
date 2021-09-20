@@ -8,7 +8,7 @@ fun main() {
         "racoon",
         "Racoon",
         "Territory",
-        gameCommands("move", "turnLeft", "eat"),
+        gameCommands("turnLeft", "eat"),
         editorCommands("addWallToTile", "addNutToTile"),
         queries("frontIsClear", "nutAvailable")
     )
