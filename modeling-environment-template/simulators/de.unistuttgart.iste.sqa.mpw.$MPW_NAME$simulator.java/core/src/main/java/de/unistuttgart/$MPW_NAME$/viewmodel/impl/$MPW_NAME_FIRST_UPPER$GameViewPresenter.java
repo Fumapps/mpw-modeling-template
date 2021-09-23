@@ -10,6 +10,7 @@ import de.unistuttgart.iste.sqa.mpw.framework.viewmodel.impl.GameViewPresenterBa
 import de.unistuttgart.$MPW_NAME$.$MPW_NAME$.*;
 import de.unistuttgart.$MPW_NAME$.facade.*;
 import javafx.beans.property.ReadOnlyListProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_MFrY0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_MFrY0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
   <imports href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#/"/>
   <imports href="http://www.mpw.uni-stuttgart.de/mpw#/"/>
   <units xsi:type="henshin:Rule" xmi:id="_hCUK0CZjEeuiY_E2amZoVQ" name="$COMMAND_NAME$">
+    <parameters xmi:id="_l62Z8ByeEeyCatqIKjrFiA" name="location" kind="IN">
+      <type xsi:type="ecore:EClass" href="http://www.mpw.uni-stuttgart.de/mpw#//Location"/>
+    </parameters>
     <lhs xmi:id="_hCXOICZjEeuiY_E2amZoVQ" name="Lhs">
       <nodes xmi:id="_Z_xvEBLaEeyRtoBjqFMidw" name="self">
         <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
