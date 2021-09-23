@@ -14,10 +14,18 @@
 
 	<repositories>
 		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>releases</id>
+			<name>mpw-libs-release</name>
+			<url>https://rss-artifactory.ddnss.org/artifactory/mpw-libs-release</url>
+		</repository>
+		<repository>
 			<snapshots />
 			<id>snapshots</id>
-			<name>libs-snapshot</name>
-			<url>https://raw.githubusercontent.com/Fumapps/mpw-modeling-framework/mpw-framework-repository/repository</url>
+			<name>mpw-libs-snapshot</name>
+			<url>https://rss-artifactory.ddnss.org/artifactory/mpw-libs-snapshot</url>
 		</repository>
 	</repositories>
 
