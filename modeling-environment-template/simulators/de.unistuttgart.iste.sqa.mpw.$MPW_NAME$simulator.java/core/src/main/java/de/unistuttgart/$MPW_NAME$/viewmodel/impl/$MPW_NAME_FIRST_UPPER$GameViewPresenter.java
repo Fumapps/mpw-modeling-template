@@ -26,8 +26,8 @@ public class $MPW_NAME_FIRST_UPPER$GameViewPresenter extends GameViewPresenterBa
 	}
 
 	@Override
-	protected Size getStageSizeFromConcreteStage() {
-		return $STAGE_NAME$.get$STAGE_NAME_FIRST_UPPER$Size();
+	protected ReadOnlyObjectProperty<Size> getStageSizeFromConcreteStage() {
+		return $STAGE_NAME$.getInternal$STAGE_NAME_FIRST_UPPER$().stageSizeProperty();
 	}
 
 	@Override

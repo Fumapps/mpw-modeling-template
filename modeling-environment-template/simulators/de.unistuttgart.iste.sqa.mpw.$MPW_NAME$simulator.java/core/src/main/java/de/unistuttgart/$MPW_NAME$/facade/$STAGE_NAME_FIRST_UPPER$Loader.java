@@ -93,13 +93,4 @@ public class $STAGE_NAME_FIRST_UPPER$Loader {
         }
     }
 
-    private void createTreeAt(final Location currentLocation) {
-        this.$STAGE_NAME$Builder.addTreeToTile(currentLocation);
-    }
-    private void createLeafAt(final Location currentLocation) {
-        this.$STAGE_NAME$Builder.addLeafToTile(currentLocation);
-    }
-    private void createMushroomAt(final Location currentLocation) {
-        this.$STAGE_NAME$Builder.addMushroomToTile(currentLocation);
-    }
 }
