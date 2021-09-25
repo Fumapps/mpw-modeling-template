@@ -1,3 +1,4 @@
-context $MPW_NAME_FIRST_UPPER$
-/** Get the current $MPW_NAME$ looking direction. */
+context $ACTOR_NAME_FIRST_UPPER$
+
+/** TODO: Explain the query $QUERY_NAME$  */
 query $QUERY_NAME$: true;
