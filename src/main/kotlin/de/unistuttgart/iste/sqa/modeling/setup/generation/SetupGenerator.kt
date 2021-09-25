@@ -12,7 +12,9 @@ class SetupGenerator(
     private val STAGE_NAME = "\$STAGE_NAME\$"
     private val MPW_NAME_FIRST_UPPER = "\$MPW_NAME_FIRST_UPPER\$"
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
+    private val ACTOR_NAME_ALL_UPPER = "\$ACTOR_NAME_ALL_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
+    private val STAGE_NAME_ALL_UPPER = "\$STAGE_NAME_ALL_UPPER\$"
     private val STAGE_NAME_PLURAL = "\$STAGE_NAME_PLURAL\$"
 
     private val GAME_COMMAND_LITERAL = "GAME_COMMAND"
@@ -156,6 +158,8 @@ class SetupGenerator(
         .replace(MPW_NAME_FIRST_UPPER, configuration.mpwName.toFirstUpper())
         .replace(ACTOR_NAME_FIRST_UPPER, configuration.actorName.toFirstUpper())
         .replace(STAGE_NAME_FIRST_UPPER, configuration.stageName.toFirstUpper())
+        .replace(ACTOR_NAME_ALL_UPPER, configuration.actorName.toUpperCase())
+        .replace(STAGE_NAME_ALL_UPPER, configuration.stageName.toUpperCase())
         .replace(STAGE_NAME_PLURAL, configuration.stageName.toPlural())
 
     private fun String.toFirstUpper() =

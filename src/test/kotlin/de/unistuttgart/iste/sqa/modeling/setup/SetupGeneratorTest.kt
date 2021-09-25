@@ -63,6 +63,22 @@ internal class SetupGeneratorTest {
         assertFile("/root/myfile.txt", "territories")
     }
 
+    @Test // Scenario: replace actor name all upper
+    fun `GIVEN actor name all upper WHEN generate file content THEN actor name is inserted as lower case in uppercase form`() {
+        withActorName("Hamster")
+        andWithFakeFile("/root/myfile.txt", "\$ACTOR_NAME_ALL_UPPER\$")
+        generate()
+        assertFile("/root/myfile.txt", "HAMSTER")
+    }
+
+    @Test // Scenario: replace stage name all upper
+    fun `GIVEN stage name all upper WHEN generate file content THEN stage name is inserted as lower case in uppercase form`() {
+        withStageName("World")
+        andWithFakeFile("/root/myfile.txt", "\$STAGE_NAME_ALL_UPPER\$")
+        generate()
+        assertFile("/root/myfile.txt", "WORLD")
+    }
+
     //endregion
 
     //region Feature: special case suffix replacement
