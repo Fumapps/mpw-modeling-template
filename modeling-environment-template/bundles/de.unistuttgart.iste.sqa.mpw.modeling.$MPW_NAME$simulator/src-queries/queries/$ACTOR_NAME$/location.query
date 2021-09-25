@@ -1,0 +1,4 @@
+context $ACTOR_NAME_FIRST_UPPER$
+
+/** Get the current $ACTOR_NAME$'s location. */
+query getLocation: self.currentTile.location;
