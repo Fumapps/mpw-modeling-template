@@ -1,3 +1,4 @@
 context $STAGE_NAME_FIRST_UPPER$::$COMMAND_NAME$(location:Location)
 
-precondition: false;
+/* TODO */
+precondition: true;

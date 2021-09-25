@@ -1,3 +1,4 @@
 context $ACTOR_NAME_FIRST_UPPER$::$COMMAND_NAME$
 
-precondition: false;
+/* TODO */
+precondition: true;
