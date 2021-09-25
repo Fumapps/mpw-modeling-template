@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_NOYy8CXXEeuHDMx4P4HuOA" name="init$ACTOR_NAME_FIRST_UPPER$" description="Initialize a $ACTOR_NAME$ object with the given parameters. Once a $ACTOR_NAME$ is initialized, the method must not be called again.">
+  <imports href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#/"/>
+  <imports href="http://www.mpw.uni-stuttgart.de/mpw#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_FUGCUSZhEeuiY_E2amZoVQ" name="setProperties">
+    <parameters xmi:id="_BWyvsDJVEeuWCcs7oPobTg" name="initialDirection" kind="IN">
+      <type xsi:type="ecore:EEnum" href="http://www.mpw.uni-stuttgart.de/mpw#//Direction"/>
+    </parameters>
+    <lhs xmi:id="_FUGCUiZhEeuiY_E2amZoVQ" name="Lhs">
+      <nodes xmi:id="_FUGCUyZhEeuiY_E2amZoVQ" name="$ACTOR_NAME$" incoming="_BUdMIDfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$ACTOR_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <nodes xmi:id="_-7fJoDfgEeu0KvmSgTDkRg" name="self" outgoing="_BUdMIDfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <edges xmi:id="_BUdMIDfhEeu0KvmSgTDkRg" source="_-7fJoDfgEeu0KvmSgTDkRg" target="_FUGCUyZhEeuiY_E2amZoVQ">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$ACTOR_NAME$"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_FUGCWCZhEeuiY_E2amZoVQ" name="Rhs">
+      <nodes xmi:id="_FUGCWSZhEeuiY_E2amZoVQ" name="$ACTOR_NAME$" incoming="_BUdMITfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$ACTOR_NAME_FIRST_UPPER$"/>
+        <attributes xmi:id="_w_JCEDIjEeupAp5-xI7a9A" value="initialDirection">
+          <type href="http://www.mpw.uni-stuttgart.de/mpw#//Actor/direction"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_-7fJoTfgEeu0KvmSgTDkRg" name="self" outgoing="_BUdMITfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <edges xmi:id="_BUdMITfhEeu0KvmSgTDkRg" source="_-7fJoTfgEeu0KvmSgTDkRg" target="_FUGCWSZhEeuiY_E2amZoVQ">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$ACTOR_NAME$"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_FUGCXyZhEeuiY_E2amZoVQ" origin="_FUGCUyZhEeuiY_E2amZoVQ" image="_FUGCWSZhEeuiY_E2amZoVQ"/>
+    <mappings xmi:id="_-7fJojfgEeu0KvmSgTDkRg" origin="_-7fJoDfgEeu0KvmSgTDkRg" image="_-7fJoTfgEeu0KvmSgTDkRg"/>
+  </units>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_Hu-h8DIiEeupAp5-xI7a9A" name="init$ACTOR_NAME_FIRST_UPPER$" subUnits="_wcGJ8DIkEeupAp5-xI7a9A _FUGCUSZhEeuiY_E2amZoVQ">
+    <parameters xmi:id="_aPvucDIiEeupAp5-xI7a9A" name="self" kind="IN">
+      <type xsi:type="ecore:EClass" href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+    </parameters>
+    <parameters xmi:id="_aacGEDIjEeupAp5-xI7a9A" name="location" kind="IN">
+      <type xsi:type="ecore:EClass" href="http://www.mpw.uni-stuttgart.de/mpw#//Location"/>
+    </parameters>
+    <parameters xmi:id="_W8upETIjEeupAp5-xI7a9A" name="direction" kind="IN">
+      <type xsi:type="ecore:EEnum" href="http://www.mpw.uni-stuttgart.de/mpw#//Direction"/>
+    </parameters>
+    <parameterMappings xmi:id="_FSFaMjJNEeuWCcs7oPobTg" source="_aacGEDIjEeupAp5-xI7a9A" target="_KtUbADIlEeupAp5-xI7a9A"/>
+    <parameterMappings xmi:id="_FSFaMzJNEeuWCcs7oPobTg" source="_KtUbADIlEeupAp5-xI7a9A" target="_aacGEDIjEeupAp5-xI7a9A"/>
+    <parameterMappings xmi:id="_X6zIIDJVEeuWCcs7oPobTg" source="_W8upETIjEeupAp5-xI7a9A" target="_BWyvsDJVEeuWCcs7oPobTg"/>
+    <parameterMappings xmi:id="_X609UDJVEeuWCcs7oPobTg" source="_BWyvsDJVEeuWCcs7oPobTg" target="_W8upETIjEeupAp5-xI7a9A"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_wcGJ8DIkEeupAp5-xI7a9A" name="addTo$STAGE_NAME_FIRST_UPPER$">
+    <parameters xmi:id="_KtUbADIlEeupAp5-xI7a9A" name="location" kind="IN">
+      <type xsi:type="ecore:EClass" href="http://www.mpw.uni-stuttgart.de/mpw#//Location"/>
+    </parameters>
+    <lhs xmi:id="_wcImMDIkEeupAp5-xI7a9A" name="Lhs">
+      <nodes xmi:id="_yeuJADIkEeupAp5-xI7a9A" name="$ACTOR_NAME$" incoming="_fo-TgDfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$ACTOR_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <nodes xmi:id="_3wVMkDIkEeupAp5-xI7a9A" incoming="_INaDADIlEeupAp5-xI7a9A" outgoing="_NsbQcDIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Tile"/>
+      </nodes>
+      <nodes xmi:id="_-Wck8DIkEeupAp5-xI7a9A" name="self" outgoing="_INaDADIlEeupAp5-xI7a9A _fo-TgDfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <nodes xmi:id="_MO0qADIlEeupAp5-xI7a9A" incoming="_NsbQcDIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location"/>
+        <attributes xmi:id="_PAaA0DIlEeupAp5-xI7a9A" value="location.column">
+          <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location/column"/>
+        </attributes>
+        <attributes xmi:id="_Su1aYDIlEeupAp5-xI7a9A" value="location.row">
+          <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location/row"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_INaDADIlEeupAp5-xI7a9A" source="_-Wck8DIkEeupAp5-xI7a9A" target="_3wVMkDIkEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Stage/tiles"/>
+      </edges>
+      <edges xmi:id="_NsbQcDIlEeupAp5-xI7a9A" source="_3wVMkDIkEeupAp5-xI7a9A" target="_MO0qADIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Tile/location"/>
+      </edges>
+      <edges xmi:id="_fo-TgDfhEeu0KvmSgTDkRg" source="_-Wck8DIkEeupAp5-xI7a9A" target="_yeuJADIkEeupAp5-xI7a9A">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$ACTOR_NAME$"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_wcImMTIkEeupAp5-xI7a9A" name="Rhs">
+      <nodes xmi:id="_yeuJATIkEeupAp5-xI7a9A" name="$ACTOR_NAME$" incoming="_DMnCoDIlEeupAp5-xI7a9A _fo-TgTfhEeu0KvmSgTDkRg" outgoing="_bRnTwDIlEeupAp5-xI7a9A">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$ACTOR_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <nodes xmi:id="_3wVMkTIkEeupAp5-xI7a9A" incoming="_INaDATIlEeupAp5-xI7a9A _bRnTwDIlEeupAp5-xI7a9A" outgoing="_NsbQcTIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Tile"/>
+      </nodes>
+      <nodes xmi:id="_-Wck8TIkEeupAp5-xI7a9A" name="self" outgoing="_DMnCoDIlEeupAp5-xI7a9A _INaDATIlEeupAp5-xI7a9A _fo-TgTfhEeu0KvmSgTDkRg">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$"/>
+      </nodes>
+      <nodes xmi:id="_MO2fMDIlEeupAp5-xI7a9A" incoming="_NsbQcTIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location"/>
+        <attributes xmi:id="_PAaA0TIlEeupAp5-xI7a9A" value="location.column">
+          <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location/column"/>
+        </attributes>
+        <attributes xmi:id="_Su1aYTIlEeupAp5-xI7a9A" value="location.row">
+          <type href="http://www.mpw.uni-stuttgart.de/mpw#//Location/row"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_DMnCoDIlEeupAp5-xI7a9A" source="_-Wck8TIkEeupAp5-xI7a9A" target="_yeuJATIkEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Stage/tileContents"/>
+      </edges>
+      <edges xmi:id="_INaDATIlEeupAp5-xI7a9A" source="_-Wck8TIkEeupAp5-xI7a9A" target="_3wVMkTIkEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Stage/tiles"/>
+      </edges>
+      <edges xmi:id="_NsbQcTIlEeupAp5-xI7a9A" source="_3wVMkTIkEeupAp5-xI7a9A" target="_MO2fMDIlEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//Tile/location"/>
+      </edges>
+      <edges xmi:id="_bRnTwDIlEeupAp5-xI7a9A" source="_yeuJATIkEeupAp5-xI7a9A" target="_3wVMkTIkEeupAp5-xI7a9A">
+        <type href="http://www.mpw.uni-stuttgart.de/mpw#//TileContent/currentTile"/>
+      </edges>
+      <edges xmi:id="_fo-TgTfhEeu0KvmSgTDkRg" source="_-Wck8TIkEeupAp5-xI7a9A" target="_yeuJATIkEeupAp5-xI7a9A">
+        <type href="../../model/$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$ACTOR_NAME$"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_yeuJAjIkEeupAp5-xI7a9A" origin="_yeuJADIkEeupAp5-xI7a9A" image="_yeuJATIkEeupAp5-xI7a9A"/>
+    <mappings xmi:id="_3wVMkjIkEeupAp5-xI7a9A" origin="_3wVMkDIkEeupAp5-xI7a9A" image="_3wVMkTIkEeupAp5-xI7a9A"/>
+    <mappings xmi:id="_-Wck8jIkEeupAp5-xI7a9A" origin="_-Wck8DIkEeupAp5-xI7a9A" image="_-Wck8TIkEeupAp5-xI7a9A"/>
+    <mappings xmi:id="_MO2fMTIlEeupAp5-xI7a9A" origin="_MO0qADIlEeupAp5-xI7a9A" image="_MO2fMDIlEeupAp5-xI7a9A"/>
+  </units>
+</henshin:Module>
