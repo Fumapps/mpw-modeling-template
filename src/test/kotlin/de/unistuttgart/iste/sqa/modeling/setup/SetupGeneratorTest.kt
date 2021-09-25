@@ -47,6 +47,22 @@ internal class SetupGeneratorTest {
         assertFile("/root/myfile.txt", "hello territory")
     }
 
+    @Test // Scenario: replace stage name plural without "y"
+    fun `GIVEN stage name plural WHEN generate file content THEN stage name is inserted as lower case in plural form`() {
+        withStageName("World")
+        andWithFakeFile("/root/myfile.txt", "\$STAGE_NAME_PLURAL\$")
+        generate()
+        assertFile("/root/myfile.txt", "worlds")
+    }
+
+    @Test // Scenario: replace stage name plural with "y"
+    fun `GIVEN stage name plural with y WHEN generate file content THEN stage name is inserted as lower case in plural form`() {
+        withStageName("Territory")
+        andWithFakeFile("/root/myfile.txt", "\$STAGE_NAME_PLURAL\$")
+        generate()
+        assertFile("/root/myfile.txt", "territories")
+    }
+
     //endregion
 
     //region Feature: special case suffix replacement

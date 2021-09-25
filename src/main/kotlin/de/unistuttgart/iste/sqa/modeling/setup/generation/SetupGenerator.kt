@@ -13,6 +13,7 @@ class SetupGenerator(
     private val MPW_NAME_FIRST_UPPER = "\$MPW_NAME_FIRST_UPPER\$"
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
+    private val STAGE_NAME_PLURAL = "\$STAGE_NAME_PLURAL\$"
 
     private val GAME_COMMAND_LITERAL = "GAME_COMMAND"
     private val EDITOR_COMMAND_LITERAL = "EDITOR_COMMAND"
@@ -155,6 +156,7 @@ class SetupGenerator(
         .replace(MPW_NAME_FIRST_UPPER, configuration.mpwName.toFirstUpper())
         .replace(ACTOR_NAME_FIRST_UPPER, configuration.actorName.toFirstUpper())
         .replace(STAGE_NAME_FIRST_UPPER, configuration.stageName.toFirstUpper())
+        .replace(STAGE_NAME_PLURAL, configuration.stageName.toPlural())
 
     private fun String.toFirstUpper() =
         if (isNotEmpty()) this[0].toUpperCase() + substring(1) else this
@@ -162,4 +164,10 @@ class SetupGenerator(
     private fun String.toFileName() = File(this).name
     private fun String.toParentFilePath() = File(this).parent
     private fun String.toSubFilePath(subPath: String) = "$this/$subPath"
+    private fun String.toPlural(): String {
+        if (endsWith("y")) {
+            return this.toLowerCase().substring(0, this.lastIndex) + "ies"
+        }
+        return this.toLowerCase() + "s"
+    }
 }
