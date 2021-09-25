@@ -11,17 +11,7 @@ public class Example01 extends Simple$MPW_NAME_FIRST_UPPER$Game {
     protected void run() {
         displayInNewGameWindow();
         $MPW_NAME$.move();
-        $MPW_NAME$.turnRight();
-        $MPW_NAME$.move();
-        $MPW_NAME$.removeLeaf();
-        $MPW_NAME$.turnLeft();
-        $MPW_NAME$.turnLeft();
-        $MPW_NAME$.move();
-        $MPW_NAME$.putLeaf();
-        $MPW_NAME$.turnLeft();
-        $MPW_NAME$.move();
-        $MPW_NAME$.turnRight();
-        $MPW_NAME$.turnRight();
+        // TODO: call further interesting commands
     }
 
 }
