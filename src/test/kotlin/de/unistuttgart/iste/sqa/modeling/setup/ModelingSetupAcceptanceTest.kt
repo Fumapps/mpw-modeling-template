@@ -13,7 +13,7 @@ internal class ModelingSetupAcceptanceTest {
         val configuration = SetupConfiguration(
             createTempFile(),
             "hamster",
-            "Hamster",
+            "PauleHamster",
             "Territory",
             gameCommands("move", "turnLeft"),
             editorCommands("addWallToTile", "addGrainToTile"),
@@ -26,8 +26,13 @@ internal class ModelingSetupAcceptanceTest {
         sut.createProjectStructureFromTemplate(configuration)
 
         assertThatNoPlaceholderIsExistingAnyMore(configuration.targetPath)
+        callMvnPackageToGenerateMpw(configuration)
+        cleanup(configuration)
+    }
 
-        val process = ProcessBuilder("mvn", "package", "--file", "pom.xml",
+    private fun callMvnPackageToGenerateMpw(configuration: SetupConfiguration) {
+        val process = ProcessBuilder(
+            "mvn", "package", "--file", "pom.xml",
             "-Dmaven.repo.local=${configuration.targetPath}/maven-local-repository"
         )
             .directory(File(configuration.targetPath))
@@ -36,14 +41,18 @@ internal class ModelingSetupAcceptanceTest {
 
         process.waitFor(10, TimeUnit.MINUTES)
         assertEquals(0, process.exitValue(), process.inputStream.bufferedReader().readText())
-
-        cleanup(configuration)
     }
 
     private fun assertThatNoPlaceholderIsExistingAnyMore(targetPath: String) {
         File(targetPath).walkTopDown().filter { it.name.contains("$") }.forEach {
-            throw IllegalStateException("file still contains placeholders: $it")
+            throw IllegalStateException("file name still contains placeholders: $it")
         }
+        File(targetPath).walkTopDown().filter { it.readText().containsAnyPlaceholder() }.forEach {
+            throw IllegalStateException("file content still contains placeholders: $it")
+        }
+    }
+    private fun String.containsAnyPlaceholder(): Boolean {
+        return "\\$(MPW|ACTOR|STAGE|IMAGE|GAME|EDITOR|COMMAND|FOREACH|END|QUERY)".toRegex().find(this) != null
     }
 
     private fun gameCommands(vararg names: String) = names.toMutableList()

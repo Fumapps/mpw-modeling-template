@@ -16,10 +16,10 @@ public class TileNode extends StackPane {
     private static final Map<String, Image> images = new HashMap<>();
 
     static {
-        loadCornImages();
+        loadImages();
     }
 
-    private static void loadCornImages() {
+    private static void loadImages() {
         $FOREACH_IMAGE$
         images.put("$IMAGE_NAME_FIRST_UPPER$", new Image("images/$IMAGE_NAME$.png"));
         $END_FOREACH$
