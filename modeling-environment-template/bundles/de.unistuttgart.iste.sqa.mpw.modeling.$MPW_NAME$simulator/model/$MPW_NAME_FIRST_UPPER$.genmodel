@@ -7,11 +7,12 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>$MPW_NAME_FIRST_UPPER$.ecore</foreignModel>
   <genPackages prefix="$MPW_NAME_FIRST_UPPER$" disposableProviderFactory="true" ecorePackage="$MPW_NAME_FIRST_UPPER$.ecore#/">
+    <genClasses ecoreClass="$MPW_NAME_FIRST_UPPER$.ecore#//$ACTOR_NAME_FIRST_UPPER$"/>
     <genClasses ecoreClass="$MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$">
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$MPW_NAME_FIRST_UPPER$"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$STAGE_NAME_FIRST_UPPER$/$ACTOR_NAME$"/>
     </genClasses>
     <genClasses ecoreClass="$MPW_NAME_FIRST_UPPER$.ecore#//$MPW_NAME_FIRST_UPPER$Game">
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$MPW_NAME_FIRST_UPPER$Game/$STAGE_NAME_FIRST_UPPER$"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference $MPW_NAME_FIRST_UPPER$.ecore#//$MPW_NAME_FIRST_UPPER$Game/$STAGE_NAME$"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
