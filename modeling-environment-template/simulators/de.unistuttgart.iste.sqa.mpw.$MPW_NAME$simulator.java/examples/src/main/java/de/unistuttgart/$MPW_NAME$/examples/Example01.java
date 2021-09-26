@@ -10,7 +10,7 @@ public class Example01 extends Simple$MPW_NAME_FIRST_UPPER$Game {
     @Override
     protected void run() {
         displayInNewGameWindow();
-        $MPW_NAME$.move();
+        $ACTOR_NAME$.move();
         // TODO: call further interesting commands
     }
 
