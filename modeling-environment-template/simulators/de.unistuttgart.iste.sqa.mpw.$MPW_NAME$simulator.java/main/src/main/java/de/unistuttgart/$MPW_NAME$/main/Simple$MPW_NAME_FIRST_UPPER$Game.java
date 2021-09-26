@@ -1,7 +1,7 @@
 package de.unistuttgart.$MPW_NAME$.main;
 
 import de.unistuttgart.$MPW_NAME$.facade.$STAGE_NAME_FIRST_UPPER$Loader;
-import de.unistuttgart.$MPW_NAME$.facade.$MPW_NAME_FIRST_UPPER$;
+import de.unistuttgart.$MPW_NAME$.facade.$ACTOR_NAME_FIRST_UPPER$;
 import de.unistuttgart.$MPW_NAME$.facade.$MPW_NAME_FIRST_UPPER$Game;
 import de.unistuttgart.$MPW_NAME$.ui.JavaFXUI;
 import de.unistuttgart.iste.sqa.mpw.framework.exceptions.GameAbortedException;
@@ -31,11 +31,11 @@ public abstract class Simple$MPW_NAME_FIRST_UPPER$Game {
     private static final String OUTPUT_INTERFACE_ENVIRONMENT_VARIABLE_NAME = "OUTPUT_INTERFACE";
 
     /**
-     * Variable inherited to child classes containing the default $MPW_NAME$
-     * which is named $MPW_NAME$ here. Intentionally, no getter or setter is used
+     * Variable inherited to child classes containing the $ACTOR_NAME$
+     * which is named $ACTOR_NAME$ here. Intentionally, no getter or setter is used
      * as they are introduced only after lecture 2.
      */
-    protected final $MPW_NAME_FIRST_UPPER$ $MPW_NAME$;
+    protected final $ACTOR_NAME_FIRST_UPPER$ $ACTOR_NAME$;
 
     /**
      * The game object of this simple game. Can be used to start, stop, reset,
@@ -51,20 +51,20 @@ public abstract class Simple$MPW_NAME_FIRST_UPPER$Game {
 
     /**
      * A console object to demonstrate IO besides using the read or write methods
-     * of $MPW_NAME$s.
+     * of $ACTOR_NAME$s.
      */
     protected final Console console = System.console();
 
     /**
      * Initialized a simple $MPW_NAME$ game by loading a default $STAGE_NAME$
-     * and setting protected references to contain $MPW_NAME$ and
+     * and setting protected references to contain $ACTOR_NAME$ and
      * the game.
      */
     public Simple$MPW_NAME_FIRST_UPPER$Game() {
         initializeGame(get$STAGE_NAME_FIRST_UPPER$File());
         game.startGamePaused();
 
-        this.$MPW_NAME$ = this.game.get$STAGE_NAME_FIRST_UPPER$().get$MPW_NAME_FIRST_UPPER$();
+        this.$ACTOR_NAME$ = this.game.get$STAGE_NAME_FIRST_UPPER$().get$ACTOR_NAME_FIRST_UPPER$();
     }
 
     protected String get$STAGE_NAME_FIRST_UPPER$File() {

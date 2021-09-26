@@ -63,7 +63,7 @@ public class $STAGE_NAME_FIRST_UPPER$Loader {
     }
 
     private List<String> readLinesFrom$STAGE_NAME_FIRST_UPPER$ResourceFile(final String $STAGE_NAME$FileName) throws IOException {
-        final InputStream in = getClass().getResourceAsStream($STAGE_NAME$FileName);
+        final InputStream in = getClass().getClassLoader().getResourceAsStream($STAGE_NAME$FileName);
         if (in == null) {
             throw new IOException("Unable to load the $STAGE_NAME$ from the filename: " + $STAGE_NAME$FileName);
         }
