@@ -27,12 +27,27 @@ internal class ModelingSetupAcceptanceTest {
 
         assertThatNoPlaceholderIsExistingAnyMore(configuration.targetPath)
         callMvnPackageToGenerateMpw(configuration)
+        callMvnPackageOnJavaSimulator(configuration)
         cleanup(configuration)
     }
 
     private fun callMvnPackageToGenerateMpw(configuration: SetupConfiguration) {
         val process = ProcessBuilder(
             "mvn", "package", "--file", "pom.xml",
+            "-Dmaven.repo.local=${configuration.targetPath}/maven-local-repository"
+        )
+            .directory(File(configuration.targetPath))
+            .inheritIO()
+            .start()
+
+        process.waitFor(10, TimeUnit.MINUTES)
+        assertEquals(0, process.exitValue(), process.inputStream.bufferedReader().readText())
+    }
+
+    private fun callMvnPackageOnJavaSimulator(configuration: SetupConfiguration) {
+        // mvn -Dmaven.javadoc.skip=true -B install --file simulators/de.unistuttgart.iste.sqa.mpw.$MPW_NAME$simulator.java/pom.xml
+        val process = ProcessBuilder(
+            "mvn", "-Dmaven.javadoc.skip=true", "-B", "package", "--file", "simulators/de.unistuttgart.iste.sqa.mpw.hamstersimulator.java/pom.xml",
             "-Dmaven.repo.local=${configuration.targetPath}/maven-local-repository"
         )
             .directory(File(configuration.targetPath))
