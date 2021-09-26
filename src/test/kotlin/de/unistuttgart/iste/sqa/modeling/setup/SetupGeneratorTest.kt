@@ -107,6 +107,14 @@ internal class SetupGeneratorTest {
         assertFile("/root/myfile.txt", "hello MyHamster")
     }
 
+    @Test // Scenario: replace actor name first upper rest lowercase (special case needed for some method calls)
+    fun `GIVEN actor name WHEN generate file content with first letter uppercase rest lowercase placeholder THEN actor name is inserted with first upper and rest lowercase`() {
+        withActorName("HamsterPaule")
+        andWithFakeFile("/root/myfile.txt", "hello \$ACTOR_NAME_FIRST_UPPER_REST_LOWERCASE$")
+        generate()
+        assertFile("/root/myfile.txt", "hello Hamsterpaule")
+    }
+
     @Test // Scenario: replace stage name first upper
     fun `GIVEN stage name WHEN generate file content with first letter uppercase placeholder THEN stage name is inserted with first upper`() {
         withStageName("myTerritory")

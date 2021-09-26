@@ -64,7 +64,7 @@ public abstract class Simple$MPW_NAME_FIRST_UPPER$Game {
         initializeGame(get$STAGE_NAME_FIRST_UPPER$File());
         game.startGamePaused();
 
-        this.$ACTOR_NAME$ = this.game.get$STAGE_NAME_FIRST_UPPER$().get$ACTOR_NAME_FIRST_UPPER$();
+        this.$ACTOR_NAME$ = this.game.get$STAGE_NAME_FIRST_UPPER$().get$ACTOR_NAME_FIRST_UPPER_REST_LOWERCASE$();
     }
 
     protected String get$STAGE_NAME_FIRST_UPPER$File() {

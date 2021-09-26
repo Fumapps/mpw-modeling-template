@@ -14,6 +14,7 @@ class SetupGenerator(
     private val MPW_NAME_FIRST_UPPER = "\$MPW_NAME_FIRST_UPPER\$"
     private val MPW_NAME_ALL_UPPER = "\$MPW_NAME_ALL_UPPER\$"
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
+    private val ACTOR_NAME_FIRST_UPPER_REST_LOWERCASE = "\$ACTOR_NAME_FIRST_UPPER_REST_LOWERCASE\$"
     private val ACTOR_NAME_ALL_UPPER = "\$ACTOR_NAME_ALL_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
     private val STAGE_NAME_ALL_UPPER = "\$STAGE_NAME_ALL_UPPER\$"
@@ -160,6 +161,7 @@ class SetupGenerator(
         .replace(MPW_NAME_FIRST_UPPER, configuration.mpwName.toFirstUpper())
         .replace(MPW_NAME_ALL_UPPER, configuration.mpwName.toUpperCase())
         .replace(ACTOR_NAME_FIRST_UPPER, configuration.actorName.toFirstUpper())
+        .replace(ACTOR_NAME_FIRST_UPPER_REST_LOWERCASE, configuration.actorName.toLowerCase().toFirstUpper())
         .replace(STAGE_NAME_FIRST_UPPER, configuration.stageName.toFirstUpper())
         .replace(ACTOR_NAME_ALL_UPPER, configuration.actorName.toUpperCase())
         .replace(STAGE_NAME_ALL_UPPER, configuration.stageName.toUpperCase())
