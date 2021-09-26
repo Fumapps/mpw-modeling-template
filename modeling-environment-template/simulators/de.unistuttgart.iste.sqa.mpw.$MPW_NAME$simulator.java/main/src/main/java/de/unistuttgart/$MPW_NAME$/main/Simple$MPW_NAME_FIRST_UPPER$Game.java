@@ -14,7 +14,7 @@ import java.util.Optional;
 import static de.unistuttgart.iste.sqa.mpw.framework.utils.Preconditions.*;
 
 public abstract class Simple$MPW_NAME_FIRST_UPPER$Game {
-    private static final String DEFAULT_$MPW_NAME_ALL_UPPER$_$STAGE_NAME_ALL_UPPER$ = "/de.unistuttgart.$MPW_NAME$.$STAGE_NAME_PLURAL$/example01.ter";
+    private static final String DEFAULT_$MPW_NAME_ALL_UPPER$_$STAGE_NAME_ALL_UPPER$ = "de.unistuttgart.$MPW_NAME$.$STAGE_NAME_PLURAL$/example01.ter";
 
     protected static void createInstance(Class<? extends Simple$MPW_NAME_FIRST_UPPER$Game> $MPW_NAME$ProgramClass) {
         try {
