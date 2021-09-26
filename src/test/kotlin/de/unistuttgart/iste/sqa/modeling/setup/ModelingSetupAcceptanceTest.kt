@@ -47,7 +47,7 @@ internal class ModelingSetupAcceptanceTest {
         File(targetPath).walkTopDown().filter { it.name.contains("$") }.forEach {
             throw IllegalStateException("file name still contains placeholders: $it")
         }
-        File(targetPath).walkTopDown().filter { it.readText().containsAnyPlaceholder() }.forEach {
+        File(targetPath).walkTopDown().filter { it.isFile && it.readText().containsAnyPlaceholder() }.forEach {
             throw IllegalStateException("file content still contains placeholders: $it")
         }
     }
