@@ -91,6 +91,14 @@ internal class SetupGeneratorTest {
         assertFile("/root/myfile.txt", "hello MyHamster")
     }
 
+    @Test // Scenario: replace mpw name all upper
+    fun `GIVEN mpw name WHEN generate file content with all uppercase placeholder THEN mpw name is inserted with all upper`() {
+        withMpwName("myHamster")
+        andWithFakeFile("/root/myfile.txt", "hello \$MPW_NAME_ALL_UPPER\$")
+        generate()
+        assertFile("/root/myfile.txt", "hello MYHAMSTER")
+    }
+
     @Test // Scenario: replace actor name first upper
     fun `GIVEN actor name WHEN generate file content with first letter uppercase placeholder THEN actor name is inserted with first upper`() {
         withActorName("myHamster")
@@ -159,6 +167,38 @@ internal class SetupGeneratorTest {
         assertFileNotExists("/root/\$IMAGES\$")
         assertFile("/root/apple.png", "ENCODED: =ENCODED_APPLE_IMAGE=")
         assertFile("/root/tree.png", "ENCODED: =ENCODED_TREE_IMAGE=")
+    }
+
+    private val DOLLAR = "$"
+
+    @Test // Scenario: generate file names for placeholders
+    fun `GIVEN two images WHEN generate image name THEN image placeholders are replaced`() {
+        withImages("apple: =ENCODED_APPLE_IMAGE=", "tree: =ENCODED_TREE_IMAGE=")
+        andWithFakeFile("/root/myfile.txt", """
+            ${DOLLAR}FOREACH_IMAGE${DOLLAR}
+            ${DOLLAR}IMAGE_NAME${DOLLAR};
+            ${DOLLAR}END_FOREACH${DOLLAR}
+        """.trimIndent())
+        generate()
+        assertFile("/root/myfile.txt", """
+            apple;
+            tree;
+        """.trimIndent())
+    }
+
+    @Test // Scenario: generate file names for first-upper placeholders
+    fun `GIVEN two images WHEN generate image name THEN first-upper image placeholders are replaced`() {
+        withImages("apple: =ENCODED_APPLE_IMAGE=", "tree: =ENCODED_TREE_IMAGE=")
+        andWithFakeFile("/root/myfile.txt", """
+            ${DOLLAR}FOREACH_IMAGE${DOLLAR}
+            ${DOLLAR}IMAGE_NAME_FIRST_UPPER${DOLLAR};
+            ${DOLLAR}END_FOREACH${DOLLAR}
+        """.trimIndent())
+        generate()
+        assertFile("/root/myfile.txt", """
+            Apple;
+            Tree;
+        """.trimIndent())
     }
 
     //endregion

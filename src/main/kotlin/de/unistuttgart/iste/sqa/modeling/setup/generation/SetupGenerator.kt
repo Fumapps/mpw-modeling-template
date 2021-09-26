@@ -2,6 +2,7 @@ package de.unistuttgart.iste.sqa.modeling.setup.generation
 
 import de.unistuttgart.iste.sqa.modeling.setup.SetupConfiguration
 import de.unistuttgart.iste.sqa.modeling.setup.filesystem.IFileSystem
+import de.unistuttgart.iste.sqa.modeling.setup.util.toFirstUpper
 import java.io.File
 
 class SetupGenerator(
@@ -11,6 +12,7 @@ class SetupGenerator(
     private val ACTOR_NAME = "\$ACTOR_NAME\$"
     private val STAGE_NAME = "\$STAGE_NAME\$"
     private val MPW_NAME_FIRST_UPPER = "\$MPW_NAME_FIRST_UPPER\$"
+    private val MPW_NAME_ALL_UPPER = "\$MPW_NAME_ALL_UPPER\$"
     private val ACTOR_NAME_FIRST_UPPER = "\$ACTOR_NAME_FIRST_UPPER\$"
     private val ACTOR_NAME_ALL_UPPER = "\$ACTOR_NAME_ALL_UPPER\$"
     private val STAGE_NAME_FIRST_UPPER = "\$STAGE_NAME_FIRST_UPPER\$"
@@ -20,14 +22,14 @@ class SetupGenerator(
     private val GAME_COMMAND_LITERAL = "GAME_COMMAND"
     private val EDITOR_COMMAND_LITERAL = "EDITOR_COMMAND"
     private val ACTOR_QUERY_LITERAL = "ACTOR_QUERY"
+    private val IMAGE_LITERAL = "IMAGE"
 
     private val FOREACH_X = "\$FOREACH_XXX\$"
     private val FOREACH_GAME_COMMAND = FOREACH_X.replace("XXX", GAME_COMMAND_LITERAL)
     private val FOREACH_EDITOR_COMMAND = FOREACH_X.replace("XXX", EDITOR_COMMAND_LITERAL)
     private val FOREACH_ACTOR_QUERY = FOREACH_X.replace("XXX", ACTOR_QUERY_LITERAL)
+    private val FOREACH_IMAGE = FOREACH_X.replace("XXX", IMAGE_LITERAL)
     private val FOREACH_END = "\$END_FOREACH\$"
-    private val FOREACH_VAR_COMMAND_NAME = "\$COMMAND_NAME\$"
-    private val FOREACH_VAR_QUERY_NAME = "\$QUERY_NAME\$"
 
     private val IMAGES_FILE = "\$IMAGES\$"
 
@@ -156,14 +158,13 @@ class SetupGenerator(
         .replace(ACTOR_NAME, configuration.actorName.toLowerCase())
         .replace(STAGE_NAME, configuration.stageName.toLowerCase())
         .replace(MPW_NAME_FIRST_UPPER, configuration.mpwName.toFirstUpper())
+        .replace(MPW_NAME_ALL_UPPER, configuration.mpwName.toUpperCase())
         .replace(ACTOR_NAME_FIRST_UPPER, configuration.actorName.toFirstUpper())
         .replace(STAGE_NAME_FIRST_UPPER, configuration.stageName.toFirstUpper())
         .replace(ACTOR_NAME_ALL_UPPER, configuration.actorName.toUpperCase())
         .replace(STAGE_NAME_ALL_UPPER, configuration.stageName.toUpperCase())
         .replace(STAGE_NAME_PLURAL, configuration.stageName.toPlural())
-
-    private fun String.toFirstUpper() =
-        if (isNotEmpty()) this[0].toUpperCase() + substring(1) else this
+        .replaceImagePlaceholders()
 
     private fun String.toFileName() = File(this).name
     private fun String.toParentFilePath() = File(this).parent
@@ -173,5 +174,11 @@ class SetupGenerator(
             return this.toLowerCase().substring(0, this.lastIndex) + "ies"
         }
         return this.toLowerCase() + "s"
+    }
+
+    private fun String.replaceImagePlaceholders(): String {
+        val forEachReplacer = ForEachReplacer("IMAGE", "IMAGE",
+            configuration.images.map { it.name })
+        return forEachReplacer.replace(this)
     }
 }
