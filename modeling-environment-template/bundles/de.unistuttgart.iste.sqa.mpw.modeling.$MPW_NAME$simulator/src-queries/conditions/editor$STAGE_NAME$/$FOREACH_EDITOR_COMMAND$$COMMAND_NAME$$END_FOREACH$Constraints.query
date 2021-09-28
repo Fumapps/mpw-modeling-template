@@ -1,4 +1,13 @@
 context $STAGE_NAME_FIRST_UPPER$::$COMMAND_NAME$(location:Location)
 
-/* TODO */
-precondition: true;
+/** location has to be on the world */
+precondition:
+    self.isLocationInWorld(location);
+
+/** the tile at the given location has to be empty */
+precondition:
+    self.getTileAt(location).contents->isEmpty();
+
+/** an element has to be placed on the tile's location */
+postcondition:
+    self.getTileAt(location).contents->size() = 1;

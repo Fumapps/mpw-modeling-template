@@ -1,0 +1,8 @@
+context $ACTOR_NAME_FIRST_UPPER$
+
+/** Checks if the tile in front of the $ACTOR_NAME$ is clear. */
+query frontIsClear:
+        ( self.direction = WEST  implies self.currentTile.west.contents->isEmpty() )
+    and ( self.direction = EAST  implies self.currentTile.east.contents->isEmpty() )
+    and ( self.direction = NORTH implies self.currentTile.north.contents->isEmpty() )
+    and ( self.direction = SOUTH implies self.currentTile.south.contents->isEmpty() );
