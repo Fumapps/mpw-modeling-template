@@ -1,4 +1,4 @@
 context $ACTOR_NAME_FIRST_UPPER$::move
 
-/** $ACTOR_NAME$'s front must not be blocked or outside world */
-precondition: !self.frontIsClear();
+/** $ACTOR_NAME$'s front must not be blocked or outside of the $STAGE_NAME$ */
+precondition: self.frontIsClear();

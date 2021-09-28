@@ -1,8 +1,8 @@
 context $STAGE_NAME_FIRST_UPPER$::$COMMAND_NAME$(location:Location)
 
-/** location has to be on the world */
+/** location has to be on the $STAGE_NAME$ */
 precondition:
-    self.isLocationInWorld(location);
+    self.isLocationIn$STAGE_NAME_FIRST_UPPER$(location);
 
 /** the tile at the given location has to be empty */
 precondition:
